@@ -29,6 +29,6 @@ public class StudentGrade {
 
 @Data
 class StudentGradeId implements Serializable {
-    private Long studentId;
-    private Long classId;
+    private Long student;
+    private Long studentClass;
 }
