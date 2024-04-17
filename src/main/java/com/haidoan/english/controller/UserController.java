@@ -18,4 +18,47 @@ public class UserController {
         User user = userRepository.findByUsernameAndPassword(username, password);
         return user != null;
     }
+
+    @GetMapping("/all")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @GetMapping("/role/{userId}")
+    public String getUserRoleName(@PathVariable Long userId) {
+        User user = userRepository.findByUserId(userId);
+        if (user != null && user.getRole() != null) {
+            return user.getRole().getName();
+        }
+        return null;
+    }
+
+    @GetMapping("/role")
+    public String getUserRoleName(@RequestParam String username, @RequestParam String password) {
+        User user = userRepository.findByUsernameAndPassword(username, password);
+        if (user != null && user.getRole() != null) {
+            return user.getRole().getName();
+        }
+        return null;
+    }
+
+    @PostMapping("/add")
+    public void addUser(@RequestBody User newUser) {
+        userRepository.save(newUser);
+    }
+
+    @DeleteMapping("/delete/{userId}")
+    public void deleteUser(@PathVariable Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @GetMapping("/filter")
+    public List<User> getFilteredUser(@RequestParam String info) {
+        return userRepository.findByUsernameContaining(info);
+    }
+
+    @PutMapping("/update")
+    public void updateUser(@RequestBody User updatedUser) {
+        userRepository.save(updatedUser);
+    }
 }
