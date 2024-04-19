@@ -4,6 +4,8 @@ import com.haidoan.english.entity.User;
 import com.haidoan.english.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.Console;
 import java.util.List;
 
 @RestController
@@ -44,11 +46,14 @@ public class UserController {
 
     @PostMapping("/add")
     public void addUser(@RequestBody User newUser) {
+        System.out.println("Add User" + newUser);
         userRepository.save(newUser);
     }
 
     @DeleteMapping("/delete/{userId}")
     public void deleteUser(@PathVariable Long userId) {
+        System.out.println("deleteUser " + userId);
+
         userRepository.deleteById(userId);
     }
 
@@ -59,6 +64,8 @@ public class UserController {
 
     @PutMapping("/update")
     public void updateUser(@RequestBody User updatedUser) {
+        System.out.println("updateUser " + updatedUser);
+
         userRepository.save(updatedUser);
     }
 }
