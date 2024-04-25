@@ -11,7 +11,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findByRoleName(String roleName);
     int countByRoleName(String roleName);
 
-    List<Employee> findByFirstNameLastName(String firstName, String lastName);
+    List<Employee> findByFirstName(String firstName);
     // Add other custom query methods here if needed
 }
 

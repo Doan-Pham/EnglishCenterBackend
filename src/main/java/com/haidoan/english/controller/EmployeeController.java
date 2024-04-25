@@ -69,7 +69,7 @@ public class EmployeeController {
         if (query == null || query.isEmpty()) {
             return employeeRepository.findAll(); // Return all employees if no query provided
         } else {
-            return employeeRepository.findByFirstNameLastName(query, query);
+            return employeeRepository.findByFirstName(query);
         }
     }
 
